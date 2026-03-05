@@ -1,6 +1,31 @@
 # pm-cli
 
-Project brain CLI for AI-human collaboration. SQLite is the source of truth; the agent manages most operations; the human reviews, approves, and unblocks.
+A project brain for an AI teammate. SQLite is the source of truth. The agent manages ~90% of operations; the human reviews, approves, and unblocks. Success means you can answer "where we are, how we got here, and what's waiting on me or the agent" without maintaining a manual system.
+
+Output: JSON by default / when not TTY; --pretty when TTY or flag passed
+
+Scheduling: Tool defines what can be known; heartbeat/cron defines when
+
+Brevity: Simple over complex; short lists; no "Next 3 Actions"
+
+Hierarchy
+Three levels, hard ceiling — no exceptions:
+
+text
+Project (L1)     → the ultimate vision and core goal
+  Subproject (L2) → a granular section of work; completion drives project completion
+    Task (L3)      → atomic action; tasks drive subproject completion
+Task is the atomic floor. No subtasks ever.
+
+A project can have multiple subprojects running in parallel.
+
+A subproject can have multiple tasks, some parallel, some sequential — agent manages order.
+
+All tasks done → subproject can be marked complete (requires decision log + confirmation).
+
+All subprojects done → project can be marked complete (requires decision log + human approval).
+
+Each level has its own health, staleness, and waiting state independently.
 
 ## Install
 
